@@ -1,1 +1,1 @@
-Shoes.app { button "Push me" }
+Shoes.app { button "Push me now!" }
