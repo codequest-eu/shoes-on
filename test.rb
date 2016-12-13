@@ -12,18 +12,12 @@ Shoes.app(title:"Shoes On!", width:(480), height:(320)) do
   self.fullscreen = true
   @x = 0
   @y = 0
-  @map = Array.new(60) { Array.new(80) }
+  @map = Array.new(6) { Array.new(4) }
 
-  num = 0
-  @map.each do |el|
-      if(num!=0)
-          line(top:0, left:(num*80), width:0, height:600)
-      end
-      el.each do |el2|
-          if(num!=0)
-              line(top:(num*80), left:0, width:800, height:0)
-          end
-      end
-      num = num + 1
+  @map.each_with_index do |column, c|
+    column.each_with_index do |item, r|
+      fill "%06x" % (rand * 0xffffff)
+      rect(top:(r * 80), left:(c * 80), width:80, height:80)
+    end
   end
 end
