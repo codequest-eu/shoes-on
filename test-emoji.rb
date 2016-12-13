@@ -13,7 +13,7 @@ end
 
 Shoes.app do
   self.fullscreen = true # this breaks shoes on mac
-  emoji_image('🍕')
+  emoji_image('🍕').click { para "hello" }  
   emoji_image('😂')
   emoji_image('🐳')
 end
