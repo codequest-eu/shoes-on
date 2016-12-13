@@ -1,1 +1,1 @@
-/home/pi/.shoes/walkabout/shoes test.rb
+/home/pi/.shoes/walkabout/shoes $@
