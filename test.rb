@@ -1,8 +1,19 @@
 # encoding: utf-8
 
+Shoes.setup do
+  gem 'emoji'
+end
+
+require 'emoji'
+Emoji.asset_host = nil
+
+def emoji_image(str)
+  image "emoji/assets/images#{Emoji.image_url_for_unicode_moji(str)}"
+end
+
 Shoes.app(title:"Shoes On!", width:(480), height:(320)) do
   background '#F3F'..'#F90'
-  self.fullscreen = true
+  self.fullscreen = true # this breaks shoes on mac
   @x = 0
   @y = 0
 
@@ -19,7 +30,7 @@ Shoes.app(title:"Shoes On!", width:(480), height:(320)) do
           rect(width:80, height:80).click do
             puts item[:id] # send event
           end
-          para(item[:id], width: 80, height: 80)
+          emoji_image(item[:text])
         end
       end
     end
