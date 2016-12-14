@@ -34,8 +34,8 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
               emoji_image(item['text']).click do |target|
                  frames = 0
                  icon_anim = animate(24) do |i|
-                   target.displace((Math.cos(i) * 4).to_i, (Math.sin(i) * 4).to_i)
-                   icon_anim.stop if frames > 32
+                   target.displace((Math.sin(i) * 4).to_i, 0)
+                   icon_anim.stop if frames > 12
                    frames += 1
                  end
                  @mqtt.publish('events', item['text'])
