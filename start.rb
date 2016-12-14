@@ -2,6 +2,7 @@
 
 Shoes.setup do
   gem 'gemoji'
+  gem 'ruby-mqtt'
 end
 
 require 'emoji'
