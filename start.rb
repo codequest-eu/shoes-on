@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Shoes.setup do
-  gem 'gemoji'
+  gem 'gemoji >= 3.0.0.rc1'
   gem 'mqtt'
 end
 
@@ -12,8 +12,8 @@ def emoji_image(str)
   image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
 rescue StandardError => e
   puts e.inspect
-  # emoji might be unsupported, print a text instead
-  button "#{str}"
+  button("#{str}", top: 5, left: 5, width: 60, height: 60)
+
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
@@ -32,9 +32,11 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   end
 
   def addRow(data_layout)
-    data_layout.each_with_index do |row, r|
-      flow(height: 80) do
-        addItem(row)
+    flow(left: 5, top: 9) do
+      data_layout.each_with_index do |row, r|
+        flow(height: 77) do
+          addItem(row)
+        end
       end
     end
   end
@@ -68,7 +70,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
     end
   end
 
-  # self.fullscreen = true # this breaks shoes on a mac
+  self.fullscreen = true # this breaks shoes on a mac
 
   # TODO(anyone): prepare initial splash screea
   set_bg_awesomeness
