@@ -27,7 +27,6 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def render(data_layout)
     clear do
       set_bg_awesomeness
-      if data_layout
       addRow(data_layout)
     end
   end
@@ -43,12 +42,18 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def addItem(row)
     row.each_with_index do |item, c|
       stack(width: 80) do
-        animateEmoji(item)
+        # return animateEmoji(item) if item['text']
+        addTextButton(item)
       end
     end
   end
 
-  def animateEmoji
+  def addTextButton(item)
+    text = item['text']
+    button "#{text}"
+  end
+
+  def animateEmoji(item)
     emoji_image(item['text']).click do |target|
      frames = 0
      icon_anim = animate(24) do |i|
