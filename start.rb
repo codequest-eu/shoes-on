@@ -9,8 +9,11 @@ require 'emoji'
 require 'mqtt'
 
 def emoji_image(str)
-  emojis = Emoji.find_by_unicode(str).image_filename
-  image "emojis/#{emojis}"
+  image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
+rescue StandardError => e
+  puts e.inspect
+  # emoji might be unsupported, print a sad face instead
+  button("hoho")
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
