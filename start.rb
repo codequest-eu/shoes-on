@@ -13,6 +13,7 @@ def emoji_image(str)
 rescue StandardError => e
   puts e.inspect
   button("#{str}", top: 5, left: 5, width: 60, height: 60)
+
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
