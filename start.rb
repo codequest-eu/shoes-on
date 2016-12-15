@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Shoes.setup do
-  gem 'gemoji'
+  gem 'gemoji >= 3.0.0.rc1'
   gem 'mqtt'
 end
 
@@ -67,7 +67,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
     end
   end
 
-  # self.fullscreen = true # this breaks shoes on a mac
+  self.fullscreen = true # this breaks shoes on a mac
 
   # TODO(anyone): prepare initial splash screea
   set_bg_awesomeness
