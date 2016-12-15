@@ -51,6 +51,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def addTextButton(item)
     text = item['text']
     button "#{text}"
+    @mqtt.publish('events', text)
   end
 
   def animateEmoji(item)
