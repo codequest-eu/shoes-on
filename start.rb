@@ -27,23 +27,35 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def render(data_layout)
     clear do
       set_bg_awesomeness
-      data_layout.each_with_index do |row, r|
-        flow(height: 80) do
-          row.each_with_index do |item, c|
-            stack(width: 80) do
-              emoji_image(item['text']).click do |target|
-                 frames = 0
-                 icon_anim = animate(24) do |i|
-                   target.displace((Math.sin(i) * 4).to_i, 0)
-                   icon_anim.stop if frames > 12
-                   frames += 1
-                 end
-                 @mqtt.publish('events', item['text'])
-              end
-            end
-          end
-        end
+      addRow(data_layout)
+    end
+  end
+
+  def addRow(data_layout)
+    data_layout.each_with_index do |row, r|
+      flow(height: 80) do
+        addItem(row)
       end
+    end
+  end
+
+  def addItem(row)
+    row.each_with_index do |item, c|
+      stack(width: 80) do
+        animateEmoji(item)
+      end
+    end
+  end
+
+  def animateEmoji(item)
+    emoji_image(item['text']).click do |target|
+     frames = 0
+     icon_anim = animate(24) do |i|
+       target.displace((Math.sin(i) * 4).to_i, 0)
+       icon_anim.stop if frames > 12
+       frames += 1
+     end
+     @mqtt.publish('events', item['text'])
     end
   end
 
@@ -63,3 +75,4 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   image("wow.jpg", left: 130)
   # end splash screen
 end
+
