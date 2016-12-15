@@ -60,6 +60,6 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
 
   # TODO(anyone): prepare initial splash screea
   set_bg_awesomeness
-  image "wow.jpg"
+  image("wow.jpg", left: 130)
   # end splash screen
 end
