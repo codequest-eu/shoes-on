@@ -12,8 +12,8 @@ def emoji_image(str)
   image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
 rescue StandardError => e
   puts e.inspect
-  # emoji might be unsupported, print a sad face instead
-  title ';__;'
+  # emoji might be unsupported, print a text instead
+  button "#{str}"
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
