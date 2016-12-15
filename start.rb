@@ -31,7 +31,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   end
 
   def addRow(data_layout)
-    flow(left: 5, top: 5) do
+    flow(left: 5, top: 3) do
       data_layout.each_with_index do |row, r|
         flow(height: 80) do
           addItem(row)
