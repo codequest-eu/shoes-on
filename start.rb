@@ -9,11 +9,8 @@ require 'emoji'
 require 'mqtt'
 
 def emoji_image(str)
-  image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
-rescue StandardError => e
-  puts e.inspect
-  # emoji might be unsupported, print a sad face instead
-  title ';__;'
+  emojis = Emoji.find_by_unicode(str).image_filename
+  emoji.nil? ? button("hello") : image "emojis/#{emojis}"
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
@@ -27,6 +24,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def render(data_layout)
     clear do
       set_bg_awesomeness
+      if data_layout
       addRow(data_layout)
     end
   end
@@ -42,19 +40,12 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def addItem(row)
     row.each_with_index do |item, c|
       stack(width: 80) do
-        # return animateEmoji(item) if item['text']
-        addTextButton(item)
+        animateEmoji(item)
       end
     end
   end
 
-  def addTextButton(item)
-    text = item['text']
-    button "#{text}"
-    @mqtt.publish('events', text)
-  end
-
-  def animateEmoji(item)
+  def animateEmoji
     emoji_image(item['text']).click do |target|
      frames = 0
      icon_anim = animate(24) do |i|
