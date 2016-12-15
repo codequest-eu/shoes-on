@@ -12,7 +12,7 @@ def emoji_image(str)
   image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
 rescue StandardError => e
   puts e.inspect
-  button "WOW"
+  button "#{str}"
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
