@@ -12,7 +12,7 @@ def emoji_image(str)
   image "emojis/#{Emoji.find_by_unicode(str).image_filename}"
 rescue StandardError => e
   puts e.inspect
-  button "#{str}"
+  button("#{str}", top: 10, left: 10, width: 60, height: 60)
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
@@ -32,7 +32,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
 
   def addRow(data_layout)
     data_layout.each_with_index do |row, r|
-      flow(height: 80) do
+      flow(height: 80, left: 2, top: 2) do
         addItem(row)
       end
     end
