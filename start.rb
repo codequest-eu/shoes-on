@@ -32,15 +32,15 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
 
   def addRow(data_layout)
     data_layout.each_with_index do |row, r|
-      flow(height: 80, left: 10) do
-        addItem(row)
+      flow(height: 80) do
+        addItem(row, r)
       end
     end
   end
 
-  def addItem(row)
+  def addItem(row, r)
     row.each_with_index do |item, c|
-      stack(width: 80, left: 10) do
+      stack(width: 80, top:(r * 80), left:(c * 80)) do
         animateEmoji(item)
       end
     end
