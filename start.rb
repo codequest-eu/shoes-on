@@ -13,7 +13,7 @@ def emoji_image(str)
 rescue StandardError => e
   puts e.inspect
   # emoji might be unsupported, print a sad face instead
-  button("hoho")
+  title ';__;'
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
