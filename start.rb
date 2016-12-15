@@ -10,7 +10,7 @@ require 'mqtt'
 
 def emoji_image(str)
   emojis = Emoji.find_by_unicode(str).image_filename
-  emoji.nil? ? button("hello") : image "emojis/#{emojis}"
+  image "emojis/#{emojis}"
 end
 
 Shoes.app(title: "mojify", width: 480, height: 320) do
