@@ -27,7 +27,6 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   def render(data_layout)
     clear do
       set_bg_awesomeness
-      if data_layout
       addRow(data_layout)
     end
   end
@@ -50,13 +49,13 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
 
   def animateEmoji
     emoji_image(item['text']).click do |target|
-     frames = 0
-     icon_anim = animate(24) do |i|
-       target.displace((Math.sin(i) * 4).to_i, 0)
-       icon_anim.stop if frames > 12
-       frames += 1
-     end
-     @mqtt.publish('events', item['text'])
+      frames = 0
+      icon_anim = animate(24) do |i|
+        target.displace((Math.sin(i) * 4).to_i, 0)
+        icon_anim.stop if frames > 12
+        frames += 1
+      end
+      @mqtt.publish('events', item['text'])
     end
   end
 
