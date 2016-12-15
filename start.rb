@@ -47,15 +47,15 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
     end
   end
 
-  def animateEmoji
+  def animateEmoji(item)
     emoji_image(item['text']).click do |target|
-      frames = 0
-      icon_anim = animate(24) do |i|
-        target.displace((Math.sin(i) * 4).to_i, 0)
-        icon_anim.stop if frames > 12
-        frames += 1
-      end
-      @mqtt.publish('events', item['text'])
+     frames = 0
+     icon_anim = animate(24) do |i|
+       target.displace((Math.sin(i) * 4).to_i, 0)
+       icon_anim.stop if frames > 12
+       frames += 1
+     end
+     @mqtt.publish('events', item['text'])
     end
   end
 
@@ -75,3 +75,4 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
   image("wow.jpg", left: 130)
   # end splash screen
 end
+
