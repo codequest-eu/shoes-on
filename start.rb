@@ -40,7 +40,7 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
 
   def addItem(row)
     row.each_with_index do |item, c|
-      stack(width: 80, top:(c * 85)) do
+      stack(width: 80, left: 10) do
         animateEmoji(item)
       end
     end
