@@ -16,12 +16,12 @@ rescue StandardError => e
   title ';__;'
 end
 
-Shoes.app(title: "mojify", width: 480, height: 320) do 
+Shoes.app(title: "mojify", width: 480, height: 320) do
   # TODO(anyone): security! xD ;__;
   @mqtt = MQTT::Client.connect("mqtts://difrxdkm:EIAdmFlDJlos@m21.cloudmqtt.com:28560")
-  
+
   def set_bg_awesomeness
-    background '#F3F'..'#F90' # can't touch this! 
+    background '#F3F'..'#F90' # can't touch this!
   end
 
   def render(data_layout)
@@ -46,20 +46,20 @@ Shoes.app(title: "mojify", width: 480, height: 320) do
       end
     end
   end
-  
-  Thread.new do 
+
+  Thread.new do
     # TODO(anyone): security! xD ;__;
     puts "subscribing..."
     @mqtt.get('layouts') do |topic, message|
       # TODO(anyone): validate message request and fail nicely
-      render(JSON.parse(message)) 
-    end 
+      render(JSON.parse(message))
+    end
   end
 
   # self.fullscreen = true # this breaks shoes on a mac
 
   # TODO(anyone): prepare initial splash screea
   set_bg_awesomeness
-  para("Hello!!!", top: 100, left: 100)
+  image "wow.jpg"
   # end splash screen
 end
